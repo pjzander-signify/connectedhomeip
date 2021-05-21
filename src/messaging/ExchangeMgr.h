@@ -206,10 +206,10 @@ private:
     {
         UnsolicitedMessageHandler() : ProtocolId(Protocols::NotSpecified) {}
 
-        constexpr void Reset() { Delegate = nullptr; }
-        constexpr bool IsInUse() const { return Delegate != nullptr; }
+        void Reset() { Delegate = nullptr; }
+        bool IsInUse() const { return Delegate != nullptr; }
         // Matches() only returns a sensible value if IsInUse() is true.
-        constexpr bool Matches(Protocols::Id aProtocolId, int16_t aMessageType) const
+        bool Matches(Protocols::Id aProtocolId, int16_t aMessageType) const
         {
             return ProtocolId == aProtocolId && MessageType == aMessageType;
         }
