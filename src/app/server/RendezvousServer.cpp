@@ -60,11 +60,13 @@ void RendezvousServer::OnPlatformEvent(const DeviceLayer::ChipDeviceEvent * even
         }
         // TODO: Commissioning complete means we can finalize the admin in our storage
     }
+#if CHIP_DEVICE_CONFIG_ENABLE_MDNS
     else if (event->Type == DeviceLayer::DeviceEventType::kOperationalNetworkEnabled)
     {
         app::Mdns::AdvertiseOperational();
         ChipLogError(Discovery, "Operational advertising enabled");
     }
+#endif
 }
 
 CHIP_ERROR RendezvousServer::WaitForPairing(const RendezvousParameters & params, Messaging::ExchangeManager * exchangeManager,
